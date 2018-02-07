@@ -1,0 +1,359 @@
+/*
+*	BitMate Author Donations Styling
+*	© Copyright 2013-2018 by BitMate - http://bitmate.net/author-donations/
+*/
+
+#bitmate-author-donation,
+.bm-cc-tabs {
+	outline: none !important;
+}
+
+.bitmate-author-donation {
+	background-image: linear-gradient(bottom, rgb(254,254,254) 7%, rgb(250,250,250) 60%);
+	background-image: -o-linear-gradient(bottom, rgb(254,254,254) 7%, rgb(250,250,250) 60%);
+	background-image: -moz-linear-gradient(bottom, rgb(254,254,254) 7%, rgb(250,250,250) 60%);
+	background-image: -webkit-linear-gradient(bottom, rgb(254,254,254) 7%, rgb(250,250,250) 60%);
+	background-image: -ms-linear-gradient(bottom, rgb(254,254,254) 7%, rgb(250,250,250) 60%);
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.07, rgb(254,254,254)), color-stop(0.6, rgb(250,250,250)) );
+	border: #ddd solid 1px;
+	border-radius: 5px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+	padding: 10px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	min-width:150px;
+	text-align:center;
+}
+
+.bm-classic {
+	margin: 0px;
+	text-align:center;
+}
+
+.bitmate-donate-widget .bm-classic {
+	margin-bottom: 15px;
+}
+
+.bm-donation-encouragement {
+	letter-spacing: 1px;
+	margin: 15px 0px;
+	text-align:center;
+}
+
+.bitmate-author-donation img {
+	background:none;
+	border:none;
+}
+
+.bitmate-author-donation a:hover {
+	color: #036;
+}
+
+.bitmate-author-scan {
+	display:inline-block;
+	vertical-align:middle;
+	margin: 0px 15px 0px 15px;
+}
+
+.bitmate-author-scan img {
+	border: solid 1px #ddd;
+}
+
+.bitmate-author-credit a {
+	box-shadow: none !important;
+	color:#bbb;
+	text-decoration: none !important;
+}
+
+/* NEW STYLES */
+
+/* CryptoCurrency Styles */
+
+.bm-cc-links i.cf {
+	font-size: 1.8em;
+}
+
+.wp-admin .bm-cc-links i.cf {
+	font-size: 1em;
+}
+
+.bm-cc-btc a,
+.bm-cc-btc a:hover {
+	color:#F08C15;
+}
+.bm-cc-btc-alt a,
+.bm-cc-btc-alt a:hover {
+	color:#4CCA47;
+}
+.bm-cc-btc-alt a i{
+	transform: rotate(-45deg);
+}
+.bm-cc-eth a,
+.bm-cc-eth a:hover {
+	color:#5782A3;
+}
+.bm-cc-ltc a,
+.bm-cc-ltc a:hover {
+	color:#989898;
+}
+.bm-cc-xmr a,
+.bm-cc-xmr a:hover {
+	color:#FF6602;
+}
+.bm-cc-zec a,
+.bm-cc-zec a:hover {
+	color:#F7C652;
+}
+
+.bm-qr-code {
+	background: #ffffff;
+    border: #ddd solid 1px;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.bm-qr-code img {
+	max-width:100%;
+	width:100%;
+}
+
+.wp-admin .bm-qr-code img {
+    height: auto;
+    width: auto;
+    max-height: 200px;
+    max-width: 100%;
+}
+
+.bm-window-detail {
+	display:inline-block;
+	padding:0px 20px;
+	width:70%;
+	vertical-align: top;
+}
+
+.wp-admin .bm-window-detail {
+	display:inline-block;
+	padding:0px 20px;
+	width:65%;
+	vertical-align: top;
+}
+
+
+ul.bm-cc-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Default */
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0px 20px;
+}
+
+ul.bm-cc-links li {
+	display: block;
+    flex: 2 1 auto;
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px 5px;
+}
+
+ul.bm-cc-links li a {
+    border: none;
+    box-shadow: none;
+    padding: 11px 16px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+ul.bm-cc-links li a:hover,
+ul.bm-cc-links li a:active {
+	background: #fefefe;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.bm-cc-links {
+	font-size: 16px;
+}
+
+input.bm-address {
+ 	font-size: 14px;
+    margin: 15px 0px;
+    padding: 8px;
+    text-align: center;
+    background: #ffffff !important;
+    width: 100%;
+}
+
+.bm-donate-buttons {
+	line-height:50px;
+	padding: 0px 0px 15px;
+}
+
+.bitmate-author-donation a.bm-button-donate {
+	background: #F08C15;
+    border-radius: 5px;
+    box-shadow:none !important;
+    color: #ffffff;
+    display: inline-block;
+    font-size:16px;
+    font-style: italic;
+    line-height: 1.5em;
+    padding: 10px 20px;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.bitmate-author-donation a.bm-button-donate-btc {
+	background: #F08C15;
+}
+.bitmate-author-donation a.bm-button-donate-btc-alt {
+	background: #4CCA47;
+}
+.bitmate-author-donation a.bm-button-donate-btc-alt i {
+	transform: rotate(-45deg);
+}
+.bitmate-author-donation a.bm-button-donate-eth {
+	background: #5782A3;
+}
+.bitmate-author-donation a.bm-button-donate-ltc {
+	background: #989898;
+}
+.bitmate-author-donation a.bm-button-donate-xmr {
+	background: #FF6602;
+}
+.bitmate-author-donation a.bm-button-donate-zec,
+.bitmate-author-donation button.bm-button-donate-zec {
+	background: #F7C652;
+	color: #333333;
+
+	font-size: 16px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+    padding: 10px 20px;
+}
+
+
+
+.bm-button-copy {
+	background: #333;
+    border-radius: 5px;
+    color: #ffffff;
+    display: none;
+    font-size: 16px;
+    font-style: italic;
+    padding: 0px 20px;
+    line-height: 44px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: normal;
+}
+
+.bm-window-detail-close {
+	clear:both;
+	display: block;
+}
+
+a.bmHide {
+	border-bottom: none !important;
+	box-shadow: none !important;
+	color: #aaa;
+	font-size: 10px;
+	text-decoration: none;
+    text-transform: uppercase !important;
+}
+
+a.bmHide:hover {
+	color: #aaa;
+	border-bottom: dashed 1px #aaa !important;
+	text-decoration: none;
+}
+
+/* CSS Only Tabbed Display for Addresses & QR Codes */
+
+.bm-cc-tabs:not(:target) {
+	display: none;
+}
+    
+.bm-cc-tabs:target {
+	display: block;
+}
+
+.bm-cc-tabs {
+	border-top: dotted 1px #cccc;
+	min-height: 200px;
+}
+
+.bm-cc-tabs h3 {
+	text-align:center;
+	padding-top:1em;
+}
+
+.wp-admin .bm-cc-tabs {
+	padding-top: 2em;
+}
+
+.wp-admin .bm-window-detail {
+	
+}
+
+.wp-admin .bm-cc-tabs h3 {
+	
+	padding: 0px;
+}
+
+.wp-admin .bm-steps li {
+	margin-bottom:12px;
+}
+
+.wp-admin .bm-welcome .textinput {
+    margin: 0.5em 0px;
+    max-width: 100%;
+    padding: 7px;
+    width: 100%;
+}
+
+.wp-admin .bm-welcome .button-primary {
+    max-width: 100%;
+    width: 100%;	
+}
+
+.wp-admin .bm-privacy {
+	display: block;
+    text-align: center;
+}
+
+/* Logo */
+.wp-admin .bm-welcome .bm_welcome_logo {
+	background: url(images/bitmate.jpg) no-repeat scroll right center #0085ba;
+    background-size: contain;
+    border: solid 10px #0085ba;
+    color: #ffffff;
+}
+
+.bm-ad-widget .bm-qr-code, 
+.bm-ad-widget .bm-window-detail {
+	width: 100%;	
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+	.bm-qr-code,
+	.bm-window-detail {
+		width:80%;
+	}
+
+	ul.bm-cc-links li {
+		flex: 2 1 50%;
+	}
+}
+
+
+
