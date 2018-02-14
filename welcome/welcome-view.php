@@ -35,6 +35,7 @@ $user_email = esc_html( $current_user->user_email );
     <div class="changelog point-releases">
         <h3>Latest Releases</h3>
         <p><strong>Version 2.0.0</strong> Introduced five new cryptocurrencies, improved onboarding, and updated design.</p>
+        <p><strong>Version 2.0.1</strong> Welcome, image and meta fixes.</p>
     </div>
 
         <div class="feature-section two-col">
