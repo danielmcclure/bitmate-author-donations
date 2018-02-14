@@ -7,11 +7,11 @@ Tested up to: 4.9.4
 Stable tag: trunk
 License: GPLv3 or later
 
-A simple plugin to help website owners and authors on WordPress powered sites to receive cryptocurrency donations from their posts.
+BitMate Author Donations is a WordPress plugin for authors on WordPress powered sites to accept cryptocurrency donations.
 
 == Description ==
 
-Adds a bitcoin address field to user profiles so that authors can accept bitcoin donations via an automatically generated bitcoin donation box after their posts or anywhere on the site with the `[bitmate-author-donate]` shortcode.
+BitMate Author Donations is a WordPress plugin for authors on WordPress powered sites to accept cryptocurrency donations. It can automatically add a cryptocurrency donation box below all posts, or can be manually controlled via the built in shortcode `[bitmate-author-donate]` and/or widgets for sidebars and visual page builders. 
 
 Here are a few of the special features you might not notice at first:
 
@@ -67,11 +67,16 @@ Check out the [official plugin site](http://bitmate.net/author-donations/) for m
 
 == Changelog ==
 
-= 2.0 =
+= 2.0.1 =
+* Updated Welcome Page
+* SVN Image Directory Fix
+* Updated Read Me
+
+= 2.0.0 =
 * Created "Maximalist Mode" which uses legacy styling when only a Bitcoin address is in use.
 * Added support for additional cryptocurrencies; Ethereum, Litecoin, Monero, ZCash
 * Add option to show/hide names next to cryptocurrency icons
-* Interated CryptoFont by [@AMPoellmann](https://AlexanderPoellmann.com/CryptoFont)
+* Interated CryptoFont by [@AMPoellmann](https://AlexanderPoellmann.com/CryptoFont) based on design inspiration from [criptonoticias](http://www.criptonoticias.com/).
 * Using [Semnatic Versioning](https://semver.org/) with consideration to; overall interface adjustments and cryptocurrency URI parsing as major (X.0.0), feature and currency additions as minor (0.X.0), and bug fixes as patches (0.0.X). 
 * Moved from Google QR Chart API to [local open source generator](https://sourceforge.net/projects/phpqrcode/) for improved privacy. 
 * Added welcome/update screen.

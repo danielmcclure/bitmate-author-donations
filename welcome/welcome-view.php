@@ -389,12 +389,12 @@ $user_email = esc_html( $current_user->user_email );
 
     <div class="feature-section two-col">
         <div class="col">
-            <img src="<?php echo plugins_url('../images/multiple-cryptocurrencies.jpeg', __FILE__); ?>" />
+            <img src="<?php echo plugins_url('images/multiple-cryptocurrencies.jpeg', dirname(__FILE__) ); ?>" />
             <h3><?php _e( 'Accept Multiple Cryptocurrencies', 'BITMATE_AUTHOR_DONATIONS' ); ?></h3>
             <p><?php _e( 'BitMate Author Donations currently allows you to collect cryptocurrency donations in six different currencies. You can currently enable; Bitcoin, Bitcoin Cash, Ethereum, Litecoin, Monero, and ZCash.', 'BITMATE_AUTHOR_DONATIONS' ); ?></p>
         </div>
         <div class="col">
-            <img src="<?php echo plugins_url('../images/bitmate-post-box.jpeg', __FILE__); ?>" />
+            <img src="<?php echo plugins_url('images/bitmate-post-box.jpeg', dirname(__FILE__) ); ?>" />
             <h3><?php _e( 'Automatically Include Below Posts', 'BITMATE_AUTHOR_DONATIONS' ); ?></h3>
             <p><?php _e( 'You can set the BitMate Author Donation box to automatically appear under all of the posts on your site. This will allow all authors to easily collect donations simply by posting to your site.', 'BITMATE_AUTHOR_DONATIONS' ); ?></p>
         </div>
@@ -402,12 +402,12 @@ $user_email = esc_html( $current_user->user_email );
 
     <div class="feature-section two-col">
         <div class="col">
-            <img src="<?php echo plugins_url('../images/bitmate-shortcode.jpeg', __FILE__); ?>" />
+            <img src="<?php echo plugins_url('images/bitmate-shortcode.jpeg', dirname(__FILE__) ); ?>" />
             <h3><?php _e( 'Shortcode For Manual Donation Boxes', 'BITMATE_AUTHOR_DONATIONS' ); ?></h3>
             <p><?php _e( 'If you would like more control over where the donation box appears within your post then you can manually add it with a shortce. Just type <strong>[bitmate-author-donate]</strong> where you\'d like it to appear.', 'BITMATE_AUTHOR_DONATIONS' ); ?></p>
         </div>
         <div class="col">
-            <img src="<?php echo plugins_url('../images/bitmate-widget.jpeg', __FILE__); ?>" />
+            <img src="<?php echo plugins_url('images/bitmate-widget.jpeg', dirname(__FILE__) ); ?>" />
             <h3><?php _e( 'Widget for Visual Page Builders & Sidebars' ); ?></h3>
             <p><?php _e( 'If you\'d prefer the donation box to appear in your sidebar then you can make use of the built in widget. This option is also useful if you use a visual page builder such as <a href="https://bitmate.net/beaver-builder">Beaver Builder</a>.', 'BITMATE_AUTHOR_DONATIONS' ); ?></p>
         </div>

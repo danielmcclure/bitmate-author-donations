@@ -50,6 +50,11 @@ You can make a cryptocurrency donation through the following methods:
 
 ## Changelog 
 
+### 2.0.1
+* Updated Welcome Page
+* SVN Image Directory Fix
+* Updated Read Me
+
 ### 2.0
 * Created "Maximalist Mode" which uses legacy styling when only a Bitcoin address is in use.
 * Added support for additional cryptocurrencies; Ethereum, Litecoin, Monero, ZCash.

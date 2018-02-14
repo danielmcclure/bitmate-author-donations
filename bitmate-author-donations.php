@@ -4,14 +4,14 @@
  * BitMate Author Donations
  *
  * @link              http://bitmate.net/author-donations/
- * @since             2.0.0
+ * @since             2.0.1
  * @package           BitMate_Author_Donations
  *
  * @wordpress-plguin
  * Plugin Name: BitMate Author Donations
  * Plugin URI: http://bitmate.net/author-donations/
  * Description: Adds a bitcoin address field to user profiles so that authors can accept bitcoin donations via an automatically generated bitcoin donation box after their posts.
- * Version: 2.0.0
+ * Version: 2.0.1
  * Author: BitMate
  * Author URI: http://bitmate.net
  * License:           GPL-3.0+
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 // Plugin version.
 if ( ! defined( 'BITMATE_AUTHOR_DONATIONS_VERSION' ) ) {
 
-    define( 'BITMATE_AUTHOR_DONATIONS_VERSION', '2.0.0' );
+    define( 'BITMATE_AUTHOR_DONATIONS_VERSION', '2.0.1' );
 
 }
 
