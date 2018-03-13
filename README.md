@@ -50,6 +50,9 @@ You can make a cryptocurrency donation through the following methods:
 
 ## Changelog 
 
+### 2.0.2
+* Content display fix
+
 ### 2.0.1
 * Updated Welcome Page
 * SVN Image Directory Fix
