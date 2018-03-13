@@ -67,6 +67,9 @@ Check out the [official plugin site](http://bitmate.net/author-donations/) for m
 
 == Changelog ==
 
+= 2.0.2 =
+* Content display fix
+
 = 2.0.1 =
 * Updated Welcome Page
 * SVN Image Directory Fix
