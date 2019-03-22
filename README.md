@@ -97,10 +97,10 @@ Plugin developed by [BitMate](http://bitmate.net "BitMate") - Please visit our w
 Any development project is based on thousands of hours of past development projects and learnings. We'd also like to give a shout out to the following people and companies that have helped make this possible in one way or another (listed in alphabetical order); Matt Corallo, Luke Dashjr, Denso Wave, Dominik Dzienia, Satoshi Nakamoto, Alexander Manfred Pöllmann, Nils Schneider, WordPress, and the teams behind all related cryptocurrency and open source libraries used in this project in the past, present or future. 
 
 ## WordPress Meta
-Contributors: danielmcclure
-Donate link: http://bitmate.net/donate/
-Tags: bitcoin, donate, donations, cryptocurrency, currency, payments, bitmate, ethereum, litecoin, bitcoin cash, monero, zcash
-Requires at least: 3.0
-Tested up to: 4.9.4
-Stable tag: trunk
-License: GPLv3 or later
+* Contributors: danielmcclure
+* Donate link: http://bitmate.net/donate/
+* Tags: bitcoin, donate, donations, cryptocurrency, currency, payments, bitmate, ethereum, litecoin, bitcoin cash, monero, zcash
+* Requires at least: 3.0
+* Tested up to: 4.9.4
+* Stable tag: trunk
+* License: GPLv3 or later
