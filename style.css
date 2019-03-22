@@ -148,7 +148,10 @@ ul.bm-cc-links {
     align-items: stretch; /* Default */
     justify-content: space-between;
     width: 100%;
-    margin: 0;
+	margin-bottom: 1em;
+	margin-top: 1em;
+    margin-left: 0px;
+	margin-right: 0px;
     padding: 0px 20px;
 }
 
