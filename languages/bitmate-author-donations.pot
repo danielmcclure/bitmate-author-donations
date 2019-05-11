@@ -1,0 +1,327 @@
+# Copyright (C) 2019 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/bitmate-author-donations\n"
+"POT-Creation-Date: 2019-05-11 03:36:16+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/bm-admin.php:19 admin/bm-admin.php:28 admin/bm-admin.php:36
+#: admin/bm-admin.php:156
+msgid "BitMate Author Donations Settings"
+msgstr ""
+
+#: admin/bm-admin.php:29 admin/bm-admin.php:65
+msgid "Display Settings"
+msgstr ""
+
+#: admin/bm-admin.php:37 welcome/welcome-view.php:44
+msgid "Getting Started"
+msgstr ""
+
+#: admin/bm-admin.php:72
+msgid "Display after posts"
+msgstr ""
+
+#: admin/bm-admin.php:77
+msgid "&nbsp;&nbsp;Enable this to automatically display the BitMate Author Donations box after all posts."
+msgstr ""
+
+#: admin/bm-admin.php:83
+msgid "Show Asset Names"
+msgstr ""
+
+#: admin/bm-admin.php:88
+msgid "&nbsp;&nbsp; This displays the name of the cryptocurrency next to the icon."
+msgstr ""
+
+#: admin/bm-admin.php:94
+msgid "Display Credit Link"
+msgstr ""
+
+#: admin/bm-admin.php:99
+msgid "&nbsp;&nbsp;This adds a simple \"Powered By...\" link. We really appreciate this but it is not required!"
+msgstr ""
+
+#: admin/bm-admin.php:114
+msgid "<p>Configure the display options below. You can also manually use the <strong>[bitmate-author-donate]</strong> shortcode anywhere on your site.</p>"
+msgstr ""
+
+#: admin/bm-admin.php:179
+msgid "Like this plugin?"
+msgstr ""
+
+#: admin/bm-admin.php:180
+msgid "Send a cryptocurrency tip to support the development of BitMate Author Donations plugin."
+msgstr ""
+
+#: admin/bm-admin.php:181 bitmate-author-donations.php:166
+#: bitmate-author-donations.php:448 bitmate-author-donations.php:726
+msgid "Scan the QR code or copy the address below into your wallet to send your donation:"
+msgstr ""
+
+#: admin/bm-admin.php:182 bitmate-author-donations.php:167
+#: bitmate-author-donations.php:449 bitmate-author-donations.php:727
+msgid "Donate via Installed Wallet"
+msgstr ""
+
+#: admin/bm-admin.php:183 bitmate-author-donations.php:168
+#: bitmate-author-donations.php:450 bitmate-author-donations.php:728
+msgid "Copy"
+msgstr ""
+
+#: admin/bm-admin.php:184 bitmate-author-donations.php:169
+#: bitmate-author-donations.php:451 bitmate-author-donations.php:729
+msgid "[X] Click Here to Hide Donation Details"
+msgstr ""
+
+#: admin/bm-admin.php:187
+msgid "Donate Bitcoin to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:188
+msgid "Donate Bitcoin Cash to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:189
+msgid "Donate Ethereum to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:190
+msgid "Donate Litecoin to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:191
+msgid "Donate Monero to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:192
+msgid "Donate ZCash to BitMate"
+msgstr ""
+
+#: admin/bm-admin.php:382
+msgid "You can now add multiple Cryptocurrency addresses via your <a href=\"%s\">user profile</a> with BitMate Author Donations."
+msgstr ""
+
+#: bitmate-author-donations.php:151 bitmate-author-donations.php:433
+#: bitmate-author-donations.php:711
+msgid "Did you like this?"
+msgstr ""
+
+#: bitmate-author-donations.php:152 bitmate-author-donations.php:434
+#: bitmate-author-donations.php:712
+msgid "Donate Bitcoin to"
+msgstr ""
+
+#: bitmate-author-donations.php:153 bitmate-author-donations.php:435
+#: bitmate-author-donations.php:713
+msgid "Donate Bitcoin Cash to"
+msgstr ""
+
+#: bitmate-author-donations.php:154 bitmate-author-donations.php:436
+#: bitmate-author-donations.php:714
+msgid "Donate Ethereum to"
+msgstr ""
+
+#: bitmate-author-donations.php:155 bitmate-author-donations.php:437
+#: bitmate-author-donations.php:715
+msgid "Donate Litecoin to"
+msgstr ""
+
+#: bitmate-author-donations.php:156 bitmate-author-donations.php:438
+#: bitmate-author-donations.php:716
+msgid "Donate Monero to"
+msgstr ""
+
+#: bitmate-author-donations.php:157 bitmate-author-donations.php:439
+#: bitmate-author-donations.php:717
+msgid "Donate ZCash to"
+msgstr ""
+
+#: bitmate-author-donations.php:158 bitmate-author-donations.php:440
+#: bitmate-author-donations.php:718
+msgid "Send a Cryptocurrency Donation to "
+msgstr ""
+
+#: bitmate-author-donations.php:159 bitmate-author-donations.php:441
+#: bitmate-author-donations.php:719
+msgid "Send a Bitcoin Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:160 bitmate-author-donations.php:442
+#: bitmate-author-donations.php:720
+msgid "Send a Bitcoin Cash Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:161 bitmate-author-donations.php:443
+#: bitmate-author-donations.php:721
+msgid "Send a Ethereum Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:162 bitmate-author-donations.php:444
+#: bitmate-author-donations.php:722
+msgid "Send a Litecoin Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:163 bitmate-author-donations.php:445
+#: bitmate-author-donations.php:723
+msgid "Send a Monero Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:164 bitmate-author-donations.php:446
+#: bitmate-author-donations.php:724
+msgid "Send a ZCash Donation to"
+msgstr ""
+
+#: bitmate-author-donations.php:165 bitmate-author-donations.php:447
+#: bitmate-author-donations.php:725
+msgid "Scan to Donate to"
+msgstr ""
+
+#: bitmate-author-donations.php:170 bitmate-author-donations.php:452
+#: bitmate-author-donations.php:730
+msgid "Powered by BitMate Author Donations"
+msgstr ""
+
+#: bitmate-author-donations.php:974
+msgid "BitMate Donations Widget"
+msgstr ""
+
+#: bitmate-author-donations.php:975
+msgid "A widget for collecting bitcoin donations."
+msgstr ""
+
+#: bitmate-author-donations.php:1003
+msgid "Donate Bitcoin"
+msgstr ""
+
+#: bitmate-author-donations.php:1007
+msgid "Title:"
+msgstr ""
+
+#: welcome/welcome-view.php:23
+msgid "BitMate Author Donations %s"
+msgstr ""
+
+#: welcome/welcome-view.php:26
+msgid "Congratulations! Authors on this site can now accept cryptocurrency donations."
+msgstr ""
+
+#: welcome/welcome-view.php:32
+msgid "What’s New"
+msgstr ""
+
+#: welcome/welcome-view.php:36
+msgid "Latest Releases"
+msgstr ""
+
+#: welcome/welcome-view.php:37 welcome/welcome-view.php:38
+#: welcome/welcome-view.php:39
+msgid "Version"
+msgstr ""
+
+#: welcome/welcome-view.php:37
+msgid "Introduced five new cryptocurrencies, improved onboarding, and updated design."
+msgstr ""
+
+#: welcome/welcome-view.php:38
+msgid "Welcome, image, and meta fixes."
+msgstr ""
+
+#: welcome/welcome-view.php:39
+msgid "Added internationalization capability."
+msgstr ""
+
+#: welcome/welcome-view.php:46
+msgid "Step #1:"
+msgstr ""
+
+#: welcome/welcome-view.php:46
+msgid "Select your desired display options on the settings page."
+msgstr ""
+
+#: welcome/welcome-view.php:47
+msgid "Step #2:"
+msgstr ""
+
+#: welcome/welcome-view.php:47
+msgid "Set your cryptocurrency addresses in your user profile. "
+msgstr ""
+
+#: welcome/welcome-view.php:48
+msgid "Step #3:"
+msgstr ""
+
+#: welcome/welcome-view.php:48
+msgid "Add any desired widgets and shortcodes."
+msgstr ""
+
+#: welcome/welcome-view.php:49
+msgid "Step #4:"
+msgstr ""
+
+#: welcome/welcome-view.php:49
+msgid "Sign up to the BitMate Newsletter &#128521;"
+msgstr ""
+
+#: welcome/welcome-view.php:53
+msgid "Subscribe to Email Updates"
+msgstr ""
+
+#: welcome/welcome-view.php:54
+msgid "Join the BitMate newsletter for free updates and cryptocurrency news!"
+msgstr ""
+
+#: welcome/welcome-view.php:68
+msgid "Enter your best email address..."
+msgstr ""
+
+#: welcome/welcome-view.php:73
+msgid "Subscribe to Updates from BitMate"
+msgstr ""
+
+#: welcome/welcome-view.php:388
+msgid "We Respect Your Privacy"
+msgstr ""
+
+#: welcome/welcome-view.php:388
+msgid "Privacy Policy"
+msgstr ""
+
+#: welcome/welcome-view.php:395
+msgid "Accept Multiple Cryptocurrencies"
+msgstr ""
+
+#: welcome/welcome-view.php:396
+msgid "BitMate Author Donations currently allows you to collect cryptocurrency donations in six different currencies. You can currently enable; Bitcoin, Bitcoin Cash, Ethereum, Litecoin, Monero, and ZCash."
+msgstr ""
+
+#: welcome/welcome-view.php:400
+msgid "Automatically Include Below Posts"
+msgstr ""
+
+#: welcome/welcome-view.php:401
+msgid "You can set the BitMate Author Donation box to automatically appear under all of the posts on your site. This will allow all authors to easily collect donations simply by posting to your site."
+msgstr ""
+
+#: welcome/welcome-view.php:408
+msgid "Shortcode For Manual Donation Boxes"
+msgstr ""
+
+#: welcome/welcome-view.php:409
+msgid "If you would like more control over where the donation box appears within your post then you can manually add it with a shortce. Just type <strong>[bitmate-author-donate]</strong> where you'd like it to appear."
+msgstr ""
+
+#: welcome/welcome-view.php:413
+msgid "Widget for Visual Page Builders & Sidebars"
+msgstr ""
+
+#: welcome/welcome-view.php:414
+msgid "If you'd prefer the donation box to appear in your sidebar then you can make use of the built in widget. This option is also useful if you use a visual page builder such as <a href=\"https://bitmate.net/beaver-builder\">Beaver Builder</a>."
+msgstr ""

@@ -20,7 +20,7 @@ $user_email = esc_html( $current_user->user_email );
 
 <div class="wrap about-wrap bm-welcome">
 
-    <h1><?php printf( __( 'BitMate Author Donations&nbsp; %s', 'BITMATE_AUTHOR_DONATIONS' ), BITMATE_AUTHOR_DONATIONS_VERSION ); ?></h1>
+    <h1><?php printf( __( 'BitMate Author Donations %s', 'BITMATE_AUTHOR_DONATIONS' ), BITMATE_AUTHOR_DONATIONS_VERSION ); ?></h1>
 
     <div class="about-text">
         <?php printf( __( "Congratulations! Authors on this site can now accept cryptocurrency donations.", 'BITMATE_AUTHOR_DONATIONS' ), BITMATE_AUTHOR_DONATIONS_VERSION ); ?>
@@ -29,13 +29,14 @@ $user_email = esc_html( $current_user->user_email );
     <div class="wp-badge bm_welcome_logo"></div>
 
     <h2 class="nav-tab-wrapper wp-clearfix">
-        <a class="nav-tab nav-tab-active">What’s New</a>
+        <a class="nav-tab nav-tab-active"><?php _e('What’s New', 'bitmate-author-donations'); ?></a>
     </h2>
 
     <div class="changelog point-releases">
-        <h3>Latest Releases</h3>
-        <p><strong>Version 2.0.0</strong> Introduced five new cryptocurrencies, improved onboarding, and updated design.</p>
-        <p><strong>Version 2.0.1</strong> Welcome, image and meta fixes.</p>
+        <h3><?php _e('Latest Releases', 'bitmate-author-donations'); ?></h3>
+        <p><strong><?php _e('Version', 'bitmate-author-donations'); ?> 2.0.0</strong> <?php _e('Introduced five new cryptocurrencies, improved onboarding, and updated design.', 'bitmate-author-donations'); ?></p>
+        <p><strong><?php _e('Version', 'bitmate-author-donations'); ?> 2.0.1</strong> <?php _e('Welcome, image, and meta fixes.', 'bitmate-author-donations'); ?></p>
+        <p><strong><?php _e('Version', 'bitmate-author-donations'); ?> 2.1.0</strong> <?php _e('Added internationalization capability.', 'bitmate-author-donations'); ?></p>
     </div>
 
         <div class="feature-section two-col">
@@ -64,12 +65,12 @@ $user_email = esc_html( $current_user->user_email );
                   <label class="_form-label">
                   </label>
                   <div class="_field-wrapper">
-                    <input type="text" name="email" placeholder="Enter your best email address..." value="<?php echo $user_email ?>" class="textinput" required/>
+                    <input type="text" name="email" placeholder="<?php _e( 'Enter your best email address...', 'BITMATE_AUTHOR_DONATIONS' ); ?>" value="<?php echo $user_email ?>" class="textinput" required/>
                   </div>
                 </div>
                 <div class="_button-wrapper _full_width">
                   <button id="_form_1131_submit" class="_submit button button-primary" type="submit">
-                    Subscribe to Updates from BitMate
+                    <?php _e( 'Subscribe to Updates from BitMate', 'BITMATE_AUTHOR_DONATIONS' ); ?>
                   </button>
                 </div>
                 <div class="_clear-element">
@@ -384,7 +385,7 @@ $user_email = esc_html( $current_user->user_email );
             })();
 
             </script>
-            <p class="bm-privacy"><small><?php _e( 'We Respect Your Privacy &middot; <a href="https://bitmate.net/privacy-policy/?utm_source=bitmate_author_donations&utm_medium=plugin&utm_campaign=welcome&utm_term=privacy_policy">Privacy Policy</a>', 'BITMATE_AUTHOR_DONATIONS' ); ?></small></p>
+            <p class="bm-privacy"><small><?php _e( 'We Respect Your Privacy', 'BITMATE_AUTHOR_DONATIONS' ); ?> &middot; <a href="https://bitmate.net/privacy-policy/?utm_source=bitmate_author_donations&utm_medium=plugin&utm_campaign=welcome&utm_term=privacy_policy"><?php _e( 'Privacy Policy', 'BITMATE_AUTHOR_DONATIONS' ); ?></a></small></p>
         </div>
      </div>
 

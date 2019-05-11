@@ -80,30 +80,36 @@
 }
 
 .bm-cc-btc a,
-.bm-cc-btc a:hover {
+.bm-cc-btc a:hover,
+.bm-cc-btc a:visited {
 	color:#F08C15;
 }
 .bm-cc-btc-alt a,
-.bm-cc-btc-alt a:hover {
+.bm-cc-btc-alt a:hover,
+.bm-cc-btc-alt a:visited {
 	color:#4CCA47;
 }
 .bm-cc-btc-alt a i{
 	transform: rotate(-45deg);
 }
 .bm-cc-eth a,
-.bm-cc-eth a:hover {
+.bm-cc-eth a:hover,
+.bm-cc-eth a:visited {
 	color:#5782A3;
 }
 .bm-cc-ltc a,
-.bm-cc-ltc a:hover {
+.bm-cc-ltc a:hover,
+.bm-cc-ltc a:visited {
 	color:#989898;
 }
 .bm-cc-xmr a,
-.bm-cc-xmr a:hover {
+.bm-cc-xmr a:hover,
+.bm-cc-xmr a:visited {
 	color:#FF6602;
 }
 .bm-cc-zec a,
-.bm-cc-zec a:hover {
+.bm-cc-zec a:hover,
+.bm-cc-zec a:visited {
 	color:#F7C652;
 }
 
@@ -167,7 +173,7 @@ ul.bm-cc-links li a {
     border: none;
     box-shadow: none;
     padding: 11px 16px;
-    text-decoration: none;
+    text-decoration: none !important;
     vertical-align: top;
 }
 
@@ -207,7 +213,7 @@ input.bm-address {
     font-style: italic;
     line-height: 1.5em;
     padding: 10px 20px;
-    text-decoration: none;
+    text-decoration: none !important;
     word-break: break-word;
 }
 

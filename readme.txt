@@ -67,6 +67,10 @@ Check out the [official plugin site](http://bitmate.net/author-donations/) for m
 
 == Changelog ==
 
+= 2.1.0 =
+* Added international string capabilities
+* CSS Updates for Default Themes
+
 = 2.0.2 =
 * Content display fix
 

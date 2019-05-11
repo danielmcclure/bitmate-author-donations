@@ -3,21 +3,22 @@
 /**
  * BitMate Author Donations
  *
- * @link              http://bitmate.net/author-donations/
- * @since             2.0.2
+ * @link              https://www.bitmate.net/author-donations/
+ * @since             2.1
  * @package           BitMate_Author_Donations
  *
  * @wordpress-plguin
  * Plugin Name: BitMate Author Donations
- * Plugin URI: http://bitmate.net/author-donations/
- * Description: Adds a bitcoin address field to user profiles so that authors can accept bitcoin donations via an automatically generated bitcoin donation box after their posts.
- * Version: 2.0.2
+ * Plugin URI: https://www.bitmate.net/author-donations/
+ * Description: Adds cryptocurrency address fields to user profiles so that authors can accept bitcoin donations via an automatically generated donation box after their posts.
+ * Version: 2.1.0
  * Author: BitMate
- * Author URI: http://bitmate.net
+ * Author URI: https://www.bitmate.net
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       bitmate-author-donations
  * Domain Path:       /languages
+ * Requires at least: 4.6
 */
 
 // If this file is called directly, abort.
@@ -87,6 +88,15 @@ if ( file_exists( BITMATE_AUTHOR_DONATIONS_DIR . '/welcome/welcome-logic.php' ) 
 
 }
 
+
+/**
+ * Load plugin textdomain.
+ */
+function bm_author_donations_load_plugin_textdomain() {
+    load_plugin_textdomain( 'bitmate-author-donations', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+//add_action( 'init', 'bm_author_donations_load_plugin_textdomain' );
+
 /* Register and Enqueue Bitmate Author Donations Scripts & Stylesheets */
 add_action( 'wp_enqueue_scripts', 'bm_author_donations_stylesheet' );
 
@@ -136,9 +146,31 @@ function bm_author_donation_box($content) {
 		$bm_author_litecoin_url = 'litecoin:'. $bm_author_litecoin;
 		$bm_author_monero_url = 'monero:'. $bm_author_monero;
 		// Does not appear to be standardised URI format 04/02/2018 - $bm_author_zcash_url = 'zcash:'. $bm_author_zcash;
+
+		// Strings for Translation
+		$bm_like_this = __('Did you like this?', 'bitmate-author-donations');
+		$bm_donate_bitcoin_to = __('Donate Bitcoin to', 'bitmate-author-donations');
+		$bm_donate_bitcoin_cash_to = __('Donate Bitcoin Cash to', 'bitmate-author-donations');
+		$bm_donate_ethereum_to = __('Donate Ethereum to', 'bitmate-author-donations');
+		$bm_donate_litecoin_to = __('Donate Litecoin to', 'bitmate-author-donations');
+		$bm_donate_monero_to = __('Donate Monero to', 'bitmate-author-donations');
+		$bm_donate_zcash_to = __('Donate ZCash to', 'bitmate-author-donations');
+		$bm_crypto_tip_to = __('Send a Cryptocurrency Donation to ', 'bitmate-author-donations');
+		$bm_bitcoin_tip_to = __('Send a Bitcoin Donation to', 'bitmate-author-donations');
+		$bm_bitcoin_cash_tip_to = __('Send a Bitcoin Cash Donation to', 'bitmate-author-donations');
+		$bm_ethereum_tip_to = __('Send a Ethereum Donation to', 'bitmate-author-donations');
+		$bm_litecoin_tip_to = __('Send a Litecoin Donation to', 'bitmate-author-donations');
+		$bm_monero_tip_to = __('Send a Monero Donation to', 'bitmate-author-donations');
+		$bm_zcash_tip_to = __('Send a ZCash Donation to', 'bitmate-author-donations');
+		$bm_scan_to_donate = __('Scan to Donate to', 'bitmate-author-donations');
+		$bm_donation_encouragement_instructions = __('Scan the QR code or copy the address below into your wallet to send your donation:', 'bitmate-author-donations');
+		$bm_donation_encouragement_button = __('Donate via Installed Wallet', 'bitmate-author-donations');
+		$bm_copy = __('Copy', 'bitmate-author-donations');
+		$bm_close = __('[X] Click Here to Hide Donation Details', 'bitmate-author-donations');
+		$bm_credit_text = __('Powered by BitMate Author Donations', 'bitmate-author-donations');
 		
 		if( isset( $display_options['display_bm_author_credit'] ) && $display_options[ 'display_bm_author_credit' ] ) {
-			$bm_author_credit = '<small class="bitmate-author-credit"><a href="http://bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">Powered by BitMate Author Donations</a></small>';
+			$bm_author_credit = '<small class="bitmate-author-credit"><a href="https://www.bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">'. $bm_credit_text .'</a></small>';
 		} else {
 			$bm_author_credit = '';
 		}
@@ -184,13 +216,13 @@ function bm_author_donation_box($content) {
 				<div class="bitmate-author-donation" id="bitmate-author-donation">
 					<div id="bm-cc-btc" class="bm-cc-tabs" style="border: none !important; display:block !important;">
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="'. $bm_scan_to_donate . ' ' . $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div class="bm-classic"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Bitcoin</div>
+					    <div class="bm-classic"><strong>'.$bm_like_this.'</strong><br/>'.$bm_bitcoin_tip_to . ' ' .$bm_author_name.'</div>
 					    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+					    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
 					    '. $bm_author_credit .'
@@ -211,7 +243,7 @@ function bm_author_donation_box($content) {
 		} else {
 			$bm_donation_box='
 				<div class="bitmate-author-donation" id="bitmate-author-donation">
-					<div class="bm-donation-encouragement"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Cryptocurrency</div>
+					<div class="bm-donation-encouragement"><strong>'.$bm_like_this.'</strong><br/>'.$bm_crypto_tip_to.' '.$bm_author_name.'</div>
 					<ul class="bm-cc-links">
 						'.$bm_cc_links.'
 					</ul>
@@ -219,16 +251,16 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-btc" class="bm-cc-tabs">
 					    <h3>Donate Bitcoin to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="' . $bm_scan_to_donate. ' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send some bitcoin:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+					    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyBitcoinAddress() {
 						  var copyText = document.getElementById("bitcoinAddress");
@@ -241,16 +273,16 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-btc-alt" class="bm-cc-tabs">
 					    <h3>Donate Bitcoin Cash to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="Scan to Donate Bitcoin Cash to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send bitcoin:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_bitcoincash.'" id="bitcoinCashAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_bitcoincash_url.'" title="Donate Bitcoin Cash to '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">Copy</button>
+					    	<a href="'.$bm_author_bitcoincash_url.'" title="'.$bm_bitcoin_cash_tip_to.' '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyBitcoinCashAddress() {
 						  var copyText = document.getElementById("bitcoinCashAddress");
@@ -263,16 +295,16 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-eth" class="bm-cc-tabs">
 					    <h3>Donate Ethereum to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="Scan to Donate Ethereum to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send some Ether:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_ethereum.'" id="ethereumAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_ethereum_url.'" title="Donate Ethereum to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">Copy</button>
+					    	<a href="'.$bm_author_ethereum_url.'" title="'.$bm_ethereum_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyEthereumAddress() {
 						  var copyText = document.getElementById("ethereumAddress");
@@ -285,16 +317,16 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-ltc" class="bm-cc-tabs">
 					    <h3>Donate Litecoin to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="Scan to Donate Litecoin to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send some Litecoin:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_litecoin.'" id="litecoinAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_litecoin_url.'" title="Donate Litecoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">Copy</button>
+					    	<a href="'.$bm_author_litecoin_url.'" title="'.$bm_litecoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyLitecoinAddress() {
 						  var copyText = document.getElementById("litecoinAddress");
@@ -307,16 +339,16 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-xmr" class="bm-cc-tabs">
 					    <h3>Donate Monero to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="Scan to Donate Monero to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send some Monero:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_monero.'" id="moneroAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
-					    	<a href="'.$bm_author_monero_url.'" title="Donate Monero to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> Donate via Installed Wallet</a>
-					    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">Copy</button>
+					    	<a href="'.$bm_author_monero_url.'" title="'.$bm_monero_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> '. $bm_donation_encouragement_button .'</a>
+					    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">'. $bm_copy .'</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyMoneroAddress() {
 						  var copyText = document.getElementById("moneroAddress");
@@ -329,15 +361,15 @@ function bm_author_donation_box($content) {
 					<div id="bm-cc-zec" class="bm-cc-tabs">
 					    <h3>Donate ZCash to '.$bm_author_name.'</h3>
 					    <div class="bm-qr-code">
-					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="Scan to Donate ZCash to '. $bm_author_name .'"/>
+					    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 					    </div><div class="bm-window-detail">
-					    <div>Scan the QR code or copy the address below into your wallet to send some ZCash:</div>
+					    <div>'. $bm_donation_encouragement_instructions . '</div>
 					    <input type="text" value="'.$bm_author_zcash.'" id="zcashAddress" class="bm-address" readonly>
 					    <div class="bm-donate-buttons">
 					    	<button onclick="copyZcashAddress()" class="bm-button-donate bm-button-donate-zec" id="buttonZcashAddress"><i class="cf cf-zec"></i> Copy ZCash Address</button>
 					    </div>
 					    </div>
-					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+					    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 					    <script>
 						function copyZcashAddress() {
 						  var copyText = document.getElementById("zcashAddress");
@@ -396,9 +428,31 @@ function bm_author_donate_shortcode() {
 	$bm_author_litecoin_url = 'litecoin:'. $bm_author_litecoin;
 	$bm_author_monero_url = 'monero:'. $bm_author_monero;
 	// Does not appear to be standardised URI format 04/02/2018 - $bm_author_zcash_url = 'zcash:'. $bm_author_zcash;
-	
+
+	// Strings for Translation
+	$bm_like_this = __('Did you like this?', 'bitmate-author-donations');
+	$bm_donate_bitcoin_to = __('Donate Bitcoin to', 'bitmate-author-donations');
+	$bm_donate_bitcoin_cash_to = __('Donate Bitcoin Cash to', 'bitmate-author-donations');
+	$bm_donate_ethereum_to = __('Donate Ethereum to', 'bitmate-author-donations');
+	$bm_donate_litecoin_to = __('Donate Litecoin to', 'bitmate-author-donations');
+	$bm_donate_monero_to = __('Donate Monero to', 'bitmate-author-donations');
+	$bm_donate_zcash_to = __('Donate ZCash to', 'bitmate-author-donations');
+	$bm_crypto_tip_to = __('Send a Cryptocurrency Donation to ', 'bitmate-author-donations');
+	$bm_bitcoin_tip_to = __('Send a Bitcoin Donation to', 'bitmate-author-donations');
+	$bm_bitcoin_cash_tip_to = __('Send a Bitcoin Cash Donation to', 'bitmate-author-donations');
+	$bm_ethereum_tip_to = __('Send a Ethereum Donation to', 'bitmate-author-donations');
+	$bm_litecoin_tip_to = __('Send a Litecoin Donation to', 'bitmate-author-donations');
+	$bm_monero_tip_to = __('Send a Monero Donation to', 'bitmate-author-donations');
+	$bm_zcash_tip_to = __('Send a ZCash Donation to', 'bitmate-author-donations');
+	$bm_scan_to_donate = __('Scan to Donate to', 'bitmate-author-donations');
+	$bm_donation_encouragement_instructions = __('Scan the QR code or copy the address below into your wallet to send your donation:', 'bitmate-author-donations');
+	$bm_donation_encouragement_button = __('Donate via Installed Wallet', 'bitmate-author-donations');
+	$bm_copy = __('Copy', 'bitmate-author-donations');
+	$bm_close = __('[X] Click Here to Hide Donation Details', 'bitmate-author-donations');
+	$bm_credit_text = __('Powered by BitMate Author Donations', 'bitmate-author-donations');
+
 	if( isset( $display_options['display_bm_author_credit'] ) && $display_options[ 'display_bm_author_credit' ] ) {
-		$bm_author_credit = '<small class="bitmate-author-credit"><a href="http://bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">Powered by BitMate Author Donations</a></small>';
+		$bm_author_credit = '<small class="bitmate-author-credit"><a href="https://www.bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">'. $bm_credit_text .'</a></small>';
 	} else {
 		$bm_author_credit = '';
 	}
@@ -444,13 +498,13 @@ function bm_author_donate_shortcode() {
 			<div class="bitmate-author-donation bm-ad-sc" id="bitmate-author-donation bm-ad-sc">
 				<div id="bm-cc-btc" class="bm-cc-tabs" style="border: none !important; display:block !important;">
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div class="bm-classic"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Bitcoin</div>
+				    <div class="bm-classic"><strong>'.$bm_like_this.'</strong><br/>'.$bm_bitcoin_tip_to.' '.$bm_author_name.'</div>
 				    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
 				    '. $bm_author_credit .'
@@ -471,24 +525,24 @@ function bm_author_donate_shortcode() {
 	} else {
 		$bm_donation_box='
 			<div class="bitmate-author-donation" id="bitmate-author-donation">
-				<div class="bm-donation-encouragement"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Cryptocurrency</div>
+				<div class="bm-donation-encouragement"><strong>'.$bm_like_this.'</strong><br/>'.$bm_crypto_tip_to.' ' .$bm_author_name.'</div>
 				<ul class="bm-cc-links">
 					'.$bm_cc_links.'
 				</ul>
 				'. $bm_author_credit .'
 				<div id="bm-sc-cc-btc" class="bm-cc-tabs">
-				    <h3>Donate Bitcoin to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_bitcoin_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some bitcoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyBitcoinAddress() {
 					  var copyText = document.getElementById("bitcoinAddress");
@@ -499,18 +553,18 @@ function bm_author_donate_shortcode() {
 					</script>
 				</div>
 				<div id="bm-sc-cc-btc-alt" class="bm-cc-tabs">
-				    <h3>Donate Bitcoin Cash to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_bitcoin_cash_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="Scan to Donate Bitcoin Cash to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send bitcoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_bitcoincash.'" id="bitcoinCashAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoincash_url.'" title="Donate Bitcoin Cash to '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoincash_url.'" title="'.$bm_bitcoin_cash_tip_to.' '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyBitcoinCashAddress() {
 					  var copyText = document.getElementById("bitcoinCashAddress");
@@ -521,18 +575,18 @@ function bm_author_donate_shortcode() {
 					</script>
 				</div>
 				<div id="bm-sc-cc-eth" class="bm-cc-tabs">
-				    <h3>Donate Ethereum to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_ethereum_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="Scan to Donate Ethereum to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Ether:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_ethereum.'" id="ethereumAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_ethereum_url.'" title="Donate Ethereum to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">Copy</button>
+				    	<a href="'.$bm_author_ethereum_url.'" title="'.$bm_ethereum_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyEthereumAddress() {
 					  var copyText = document.getElementById("ethereumAddress");
@@ -543,18 +597,18 @@ function bm_author_donate_shortcode() {
 					</script>
 				</div>
 				<div id="bm-sc-cc-ltc" class="bm-cc-tabs">
-				    <h3>Donate Litecoin to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_litecoin_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="Scan to Donate Litecoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Litecoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_litecoin.'" id="litecoinAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_litecoin_url.'" title="Donate Litecoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">Copy</button>
+				    	<a href="'.$bm_author_litecoin_url.'" title="'.$bm_litecoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyLitecoinAddress() {
 					  var copyText = document.getElementById("litecoinAddress");
@@ -565,18 +619,18 @@ function bm_author_donate_shortcode() {
 					</script>
 				</div>
 				<div id="bm-sc-cc-xmr" class="bm-cc-tabs">
-				    <h3>Donate Monero to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_monero_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="Scan to Donate Monero to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Monero:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_monero.'" id="moneroAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_monero_url.'" title="Donate Monero to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">Copy</button>
+				    	<a href="'.$bm_author_monero_url.'" title="'.$bm_monero_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyMoneroAddress() {
 					  var copyText = document.getElementById("moneroAddress");
@@ -587,17 +641,17 @@ function bm_author_donate_shortcode() {
 					</script>
 				</div>
 				<div id="bm-sc-cc-zec" class="bm-cc-tabs">
-				    <h3>Donate ZCash to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_zcash_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="Scan to Donate ZCash to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some ZCash:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_zcash.'" id="zcashAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
 				    	<button onclick="copyZcashAddress()" class="bm-button-donate bm-button-donate-zec" id="buttonZcashAddress"><i class="cf cf-zec"></i> Copy ZCash Address</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyZcashAddress() {
 					  var copyText = document.getElementById("zcashAddress");
@@ -652,9 +706,31 @@ function bm_donate_widget_shortcode() {
 	$bm_author_litecoin_url = 'litecoin:'. $bm_author_litecoin;
 	$bm_author_monero_url = 'monero:'. $bm_author_monero;
 	// Does not appear to be standardised URI format 04/02/2018 - $bm_author_zcash_url = 'zcash:'. $bm_author_zcash;
+
+	// Strings for Translation
+	$bm_like_this = __('Did you like this?', 'bitmate-author-donations');
+	$bm_donate_bitcoin_to = __('Donate Bitcoin to', 'bitmate-author-donations');
+	$bm_donate_bitcoin_cash_to = __('Donate Bitcoin Cash to', 'bitmate-author-donations');
+	$bm_donate_ethereum_to = __('Donate Ethereum to', 'bitmate-author-donations');
+	$bm_donate_litecoin_to = __('Donate Litecoin to', 'bitmate-author-donations');
+	$bm_donate_monero_to = __('Donate Monero to', 'bitmate-author-donations');
+	$bm_donate_zcash_to = __('Donate ZCash to', 'bitmate-author-donations');
+	$bm_crypto_tip_to = __('Send a Cryptocurrency Donation to ', 'bitmate-author-donations');
+	$bm_bitcoin_tip_to = __('Send a Bitcoin Donation to', 'bitmate-author-donations');
+	$bm_bitcoin_cash_tip_to = __('Send a Bitcoin Cash Donation to', 'bitmate-author-donations');
+	$bm_ethereum_tip_to = __('Send a Ethereum Donation to', 'bitmate-author-donations');
+	$bm_litecoin_tip_to = __('Send a Litecoin Donation to', 'bitmate-author-donations');
+	$bm_monero_tip_to = __('Send a Monero Donation to', 'bitmate-author-donations');
+	$bm_zcash_tip_to = __('Send a ZCash Donation to', 'bitmate-author-donations');
+	$bm_scan_to_donate = __('Scan to Donate to', 'bitmate-author-donations');
+	$bm_donation_encouragement_instructions = __('Scan the QR code or copy the address below into your wallet to send your donation:', 'bitmate-author-donations');
+	$bm_donation_encouragement_button = __('Donate via Installed Wallet', 'bitmate-author-donations');
+	$bm_copy = __('Copy', 'bitmate-author-donations');
+	$bm_close = __('[X] Click Here to Hide Donation Details', 'bitmate-author-donations');
+	$bm_credit_text = __('Powered by BitMate Author Donations', 'bitmate-author-donations');
 	
 	if( isset( $display_options['display_bm_author_credit'] ) && $display_options[ 'display_bm_author_credit' ] ) {
-		$bm_author_credit = '<small class="bitmate-author-credit"><a href="http://bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">Powered by BitMate Author Donations</a></small>';
+		$bm_author_credit = '<small class="bitmate-author-credit"><a href="https://www.bitmate.net/author-donations/" rel="nofollow" class="bitmate-author-credit">'. $bm_credit_text .'</a></small>';
 	} else {
 		$bm_author_credit = '';
 	}
@@ -699,14 +775,14 @@ function bm_donate_widget_shortcode() {
 		$bm_donation_box='
 			<div class="bitmate-author-donation bm-ad-widget" id="bitmate-author-donation bm-ad-widget">
 				<div id="bm-cc-btc" class="bm-cc-tabs" style="border: none !important; display:block !important;">
-					<div class="bm-classic"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Bitcoin</div>
+					<div class="bm-classic"><strong>'.$bm_like_this.'</strong><br/>'.$bm_bitcoin_tip_to.' '.$bm_author_name.'</div>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
 				    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
 				    '. $bm_author_credit .'
@@ -727,24 +803,24 @@ function bm_donate_widget_shortcode() {
 	} else {
 		$bm_donation_box='
 			<div class="bitmate-author-donation bm-ad-widget" id="bitmate-author-donation bm-ad-widget">
-				<div class="bm-donation-encouragement"><strong>Did you like this?</strong><br/>Tip '.$bm_author_name.' with Cryptocurrency</div>
+				<div class="bm-donation-encouragement"><strong>'.$bm_like_this.'</strong><br/>'.$bm_crypto_tip_to.' '.$bm_author_name.'</div>
 				<ul class="bm-cc-links">
 					'.$bm_cc_links.'
 				</ul>
 				'. $bm_author_credit .'
 				<div id="bm-w-cc-btc" class="bm-cc-tabs">
-				    <h3>Donate Bitcoin to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_bitcoin_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="Scan to Donate Bitcoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some bitcoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_bitcoin.'" id="bitcoinAddress" class="bm-address" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoin_url.'" title="Donate Bitcoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoin_url.'" title="'.$bm_bitcoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-btc"><i class="cf cf-btc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinAddress()" class="bm-button-copy" id="buttonBitcoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyBitcoinAddress() {
 					  var copyText = document.getElementById("bitcoinAddress");
@@ -755,18 +831,18 @@ function bm_donate_widget_shortcode() {
 					</script>
 				</div>
 				<div id="bm-w-cc-btc-alt" class="bm-cc-tabs">
-				    <h3>Donate Bitcoin Cash to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_bitcoin_cash_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="Scan to Donate Bitcoin Cash to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_bitcoincash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send bitcoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_bitcoincash.'" id="bitcoinCashAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_bitcoincash_url.'" title="Donate Bitcoin Cash to '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">Copy</button>
+				    	<a href="'.$bm_author_bitcoincash_url.'" title="'.$bm_bitcoin_cash_tip_to.' '.$bm_author_name.'" class="bm-button-donate  bm-button-donate-btc-alt"><i class="cf cf-btc-alt"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyBitcoinCashAddress()" class="bm-button-copy" id="buttonBitcoinCashAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyBitcoinCashAddress() {
 					  var copyText = document.getElementById("bitcoinCashAddress");
@@ -777,18 +853,18 @@ function bm_donate_widget_shortcode() {
 					</script>
 				</div>
 				<div id="bm-w-cc-eth" class="bm-cc-tabs">
-				    <h3>Donate Ethereum to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_ethereum_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="Scan to Donate Ethereum to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_ethereum.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Ether:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_ethereum.'" id="ethereumAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_ethereum_url.'" title="Donate Ethereum to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">Copy</button>
+				    	<a href="'.$bm_author_ethereum_url.'" title="'.$bm_ethereum_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-eth"><i class="cf cf-eth"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyEthereumAddress()" class="bm-button-copy" id="buttonEthereumAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyEthereumAddress() {
 					  var copyText = document.getElementById("ethereumAddress");
@@ -799,18 +875,18 @@ function bm_donate_widget_shortcode() {
 					</script>
 				</div>
 				<div id="bm-w-cc-ltc" class="bm-cc-tabs">
-				    <h3>Donate Litecoin to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_litecoin_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="Scan to Donate Litecoin to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_litecoin.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Litecoin:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_litecoin.'" id="litecoinAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_litecoin_url.'" title="Donate Litecoin to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">Copy</button>
+				    	<a href="'.$bm_author_litecoin_url.'" title="'.$bm_litecoin_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-ltc"><i class="cf cf-ltc"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyLitecoinAddress()" class="bm-button-copy" id="buttonLitecoinAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyLitecoinAddress() {
 					  var copyText = document.getElementById("litecoinAddress");
@@ -821,18 +897,18 @@ function bm_donate_widget_shortcode() {
 					</script>
 				</div>
 				<div id="bm-w-cc-xmr" class="bm-cc-tabs">
-				    <h3>Donate Monero to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_monero_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="Scan to Donate Monero to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_monero.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some Monero:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_monero.'" id="moneroAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
-				    	<a href="'.$bm_author_monero_url.'" title="Donate Monero to '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> Donate via Installed Wallet</a>
-				    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">Copy</button>
+				    	<a href="'.$bm_author_monero_url.'" title="'.$bm_monero_tip_to.' '.$bm_author_name.'" class="bm-button-donate bm-button-donate-xmr"><i class="cf cf-xmr"></i> '. $bm_donation_encouragement_button .'</a>
+				    	<button onclick="copyMoneroAddress()" class="bm-button-copy" id="buttonMoneroAddress">'. $bm_copy .'</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyMoneroAddress() {
 					  var copyText = document.getElementById("moneroAddress");
@@ -843,17 +919,17 @@ function bm_donate_widget_shortcode() {
 					</script>
 				</div>
 				<div id="bm-w-cc-zec" class="bm-cc-tabs">
-				    <h3>Donate ZCash to '.$bm_author_name.'</h3>
+				    <h3>'.$bm_donate_zcash_to.' '.$bm_author_name.'</h3>
 				    <div class="bm-qr-code">
-				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="Scan to Donate ZCash to '. $bm_author_name .'"/>
+				    	<img src="'.plugins_url('includes/qrme.php?', __FILE__).$bm_author_zcash.'" alt="' . $bm_scan_to_donate .' '. $bm_author_name .'"/>
 				    </div><div class="bm-window-detail">
-				    <div>Scan the QR code or copy the address below into your wallet to send some ZCash:</div>
+				    <div>'. $bm_donation_encouragement_instructions . '</div>
 				    <input type="text" value="'.$bm_author_zcash.'" id="zcashAddress" class="bm-address" readonly>
 				    <div class="bm-donate-buttons">
 				    	<button onclick="copyZcashAddress()" class="bm-button-donate bm-button-donate-zec" id="buttonZcashAddress"><i class="cf cf-zec"></i> Copy ZCash Address</button>
 				    </div>
 				    </div>
-				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">[X] Click Here to Hide Donation Details</a></div>
+				    <div class="bm-window-detail-close"><a href="#bitmate-author-donation" class="bmHide">'.$bm_close.'</a></div>
 				    <script>
 					function copyZcashAddress() {
 					  var copyText = document.getElementById("zcashAddress");
@@ -895,8 +971,8 @@ class BM_Donation_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 	 		'bm_donation_widget',
-			'BitMate Donations Widget',
-			array( 'description' => 'A widget for collecting bitcoin donations.' ) 
+			esc_html__('BitMate Donations Widget','bitmate-author-donations'),
+			array( 'description' => __('A widget for collecting bitcoin donations.', 'bitmate-author-donations') ) 
 		);
 	}
 
@@ -924,7 +1000,7 @@ class BM_Donation_Widget extends WP_Widget {
 			$title = $instance[ 'title' ];
 		}
 		else {
-			$title = 'Donate Bitcoin';
+			$title = __('Donate Bitcoin', 'bitmate-author-donations');
 		}
 		?>
 		<p>

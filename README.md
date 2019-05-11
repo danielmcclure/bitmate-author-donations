@@ -50,6 +50,10 @@ You can make a cryptocurrency donation through the following methods:
 
 ## Changelog 
 
+### 2.1.0
+* Added international string capabilities
+* CSS Updates for Default Themes
+
 ### 2.0.2
 * Content display fix
 
